@@ -1,0 +1,1 @@
+The executable browser workflow lives in `apps/web/e2e/lifecycle.spec.ts` so it resolves the frontend workspace dependencies. Run `cd apps/web && pnpm test:e2e`. It exercises real API/database/worker processes, role changes, deployment, drift and rollback.
