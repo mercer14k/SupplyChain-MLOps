@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supplychain-mlops"
+version = "0.1.0"
+description = "Local-first model operations for supply-chain forecasting and anomaly detection"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1", "numpy>=2.2,<3", "pydantic>=2.10,<3", "httpx>=0.28,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "pip-audit>=2.9,<3", "pyyaml>=6,<7"]
+
+[project.scripts]
+scml = "scml.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["packages"]
+
+[tool.pytest.ini_options]
+pythonpath = ["packages", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "B008"]
