@@ -1,0 +1,20 @@
+{
+  "seed": 42,
+  "generator": "standalone-demand-v1",
+  "anomaly_record_ids": [
+    "standalone-demand-v1-s42-d180-n4-shift0:0:140",
+    "standalone-demand-v1-s42-d180-n4-shift0:0:171",
+    "standalone-demand-v1-s42-d180-n4-shift0:1:141",
+    "standalone-demand-v1-s42-d180-n4-shift0:1:170",
+    "standalone-demand-v1-s42-d180-n4-shift0:2:142",
+    "standalone-demand-v1-s42-d180-n4-shift0:2:169",
+    "standalone-demand-v1-s42-d180-n4-shift0:3:143",
+    "standalone-demand-v1-s42-d180-n4-shift0:3:168"
+  ],
+  "drift": {
+    "seed": 43,
+    "demand_multiplier": 1.7,
+    "lead_time_add_days": 6,
+    "fulfillment_add": -0.1
+  }
+}

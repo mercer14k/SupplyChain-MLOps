@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "training_code_sha256": "8c03d19ef623fc5925a0df78081154746445e90b0190271f96d31dc4bd924f0e",
+  "measured_at": "2026-09-28T03:34:22.012045+00:00",
+  "hardware": {
+    "os": "macOS-26.6.2-arm64-arm-64bit",
+    "cpu": "Apple M5",
+    "logical_cpus": 10,
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "local_llm": "disabled",
+    "seed": 42
+  },
+  "dataset": {
+    "rows": 14600,
+    "days": 365,
+    "series": 40,
+    "raw_sha256": "5efc557026cbf82dfd3f85f15376d6fda8ca7ddf365178f6d14dc2f8c68c532d"
+  },
+  "timings": {
+    "forecast": {
+      "median_seconds": 0.03993512503802776,
+      "min_seconds": 0.0361083330353722,
+      "max_seconds": 0.0426202499656938,
+      "repeats": 3
+    },
+    "anomaly": {
+      "median_seconds": 0.015170167025644332,
+      "min_seconds": 0.01448174996767193,
+      "max_seconds": 0.015191290993243456,
+      "repeats": 3
+    }
+  },
+  "quality": {
+    "forecast": {
+      "wape": 0.0077203950958147785,
+      "mae": 2.633188809799331,
+      "bias": -0.0006194100018191599,
+      "baseline_wape": 0.017527477051415673,
+      "interval_coverage": 0.9013698630136986,
+      "holdout_n": 2920,
+      "fit_n": 9480,
+      "excluded_stockout_n": 0
+    },
+    "anomaly": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "alert_rate": 0.024315068493150686,
+      "holdout_n": 2920,
+      "labeled": true,
+      "fit_n": 9480,
+      "excluded_stockout_n": 0
+    }
+  },
+  "artifact_hashes": {
+    "forecast": "79affa4f86c18a21ed045345af27ce122d7490e9ae2aabfd95958e0fac96486c",
+    "anomaly": "631e2c93cc1fcec9d22c27869d764e3a9aaa1d9e70ed40885cc8182d2342bec1"
+  },
+  "checks": {
+    "forecast_reproducible": true,
+    "forecast_quality_gate": true,
+    "anomaly_reproducible": true,
+    "anomaly_quality_gate": true,
+    "rollback_exact_predictions": true,
+    "rollback_exact_artifact": true,
+    "dataset_traceability": true,
+    "drift_alert": true,
+    "deployment_api_smoke": true,
+    "rollback_audit": true
+  },
+  "total_seconds": 0.7805325409863144,
+  "process_peak_rss_mib": 161.75,
+  "scope": "Synthetic local single-process benchmark. RSS includes imports and the API smoke test; not an isolated model allocation. No Docker or live LLM benchmark."
+}

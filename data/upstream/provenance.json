@@ -1,0 +1,8 @@
+{
+  "source_project": "ConsignAI",
+  "source_file": "data/sample/mini.jsonl.gz",
+  "source_sha256": "aa9d0c5b007ed6e028ef8f185f53983414bc6b0cbe876580a7c26ff4a4f5cf28",
+  "license": "Apache-2.0",
+  "transform": "scml.data.generator.consignai v1",
+  "demand_source": "SupplyChain MLOps standalone-demand-v1; DemandSense does not exist yet"
+}

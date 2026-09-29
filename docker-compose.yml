@@ -1,0 +1,72 @@
+name: supplychain-mlops
+x-backend: &backend
+  build:
+    context: .
+    dockerfile: apps/api/Dockerfile
+  environment:
+    SCML_STATE_DIR: /state
+    SCML_DEMO: ${SCML_DEMO:-true}
+    SCML_OPERATOR_TOKEN: ${SCML_OPERATOR_TOKEN:-}
+    SCML_REVIEWER_TOKEN: ${SCML_REVIEWER_TOKEN:-}
+    SCML_LLM_ENABLED: ${SCML_LLM_ENABLED:-false}
+    SCML_LLM_RUNTIME: ${SCML_LLM_RUNTIME:-ollama}
+    SCML_LLM_URL: ${SCML_LLM_URL:-http://host.docker.internal:11434}
+    SCML_LLM_MODEL: ${SCML_LLM_MODEL:-}
+  volumes:
+    - operations:/state
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  read_only: true
+  tmpfs:
+    - /tmp
+services:
+  api:
+    <<: *backend
+    ports:
+      - "127.0.0.1:8018:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+  worker:
+    <<: *backend
+    command: ["scml", "worker"]
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,datetime; p=json.load(open('/state/worker-heartbeat.json')); assert (datetime.datetime.now(datetime.timezone.utc)-datetime.datetime.fromisoformat(p['at'])).total_seconds()<660"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "127.0.0.1:5188:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+volumes:
+  operations:

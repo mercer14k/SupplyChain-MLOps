@@ -1,0 +1,110 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "ingested_at": {
+      "format": "date-time",
+      "title": "Ingested At",
+      "type": "string"
+    },
+    "validation_status": {
+      "const": "valid",
+      "default": "valid",
+      "title": "Validation Status",
+      "type": "string"
+    },
+    "lineage": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "maxProperties": 20,
+      "title": "Lineage",
+      "type": "object"
+    },
+    "day": {
+      "format": "date",
+      "title": "Day",
+      "type": "string"
+    },
+    "sku": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Sku",
+      "type": "string"
+    },
+    "location": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Location",
+      "type": "string"
+    },
+    "demand": {
+      "maximum": 10000000.0,
+      "minimum": 0,
+      "title": "Demand",
+      "type": "number"
+    },
+    "stock_on_hand": {
+      "maximum": 1000000000.0,
+      "minimum": 0,
+      "title": "Stock On Hand",
+      "type": "number"
+    },
+    "lead_time_days": {
+      "maximum": 365,
+      "minimum": 0,
+      "title": "Lead Time Days",
+      "type": "number"
+    },
+    "fulfillment_rate": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Fulfillment Rate",
+      "type": "number"
+    },
+    "promotion": {
+      "default": false,
+      "title": "Promotion",
+      "type": "boolean"
+    },
+    "stockout": {
+      "default": false,
+      "title": "Stockout",
+      "type": "boolean"
+    },
+    "is_anomaly": {
+      "default": false,
+      "title": "Is Anomaly",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "source_id",
+    "ingested_at",
+    "day",
+    "sku",
+    "location",
+    "demand",
+    "stock_on_hand",
+    "lead_time_days",
+    "fulfillment_rate"
+  ],
+  "title": "Observation",
+  "type": "object"
+}

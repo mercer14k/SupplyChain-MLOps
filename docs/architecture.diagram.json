@@ -1,0 +1,16 @@
+{
+  "description": null,
+  "diagrams": [
+    {
+      "accessibility": null,
+      "description": null,
+      "id": "diagram_1",
+      "kind": "raw",
+      "source": "flowchart LR\n    A[Seeded data and ConsignAI sample] --> B[Validation and fingerprints]\n    B --> C[(SQLite WAL registry)]\n    D[Persistent scheduler] --> E[Training worker]\n    C --> E\n    E --> F[JSON model and holdout evidence]\n    F --> G[Quality gate]\n    G --> H[Reviewer approval]\n    H --> I[Operator deployment]\n    I --> J[FastAPI inference]\n    J --> K[Batch drift monitoring]\n    K --> C\n    I --> L[Audited rollback]\n    M[React operations dashboard] --> C\n    F -. optional evidence only .-> N[User-selected local model]\n",
+      "styles": [],
+      "title": "Diagram 1"
+    }
+  ],
+  "title": "README",
+  "version": 2
+}

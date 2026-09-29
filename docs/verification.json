@@ -1,0 +1,18 @@
+{
+  "verified_at": "2026-09-28T03:36:11.260282+00:00",
+  "backend_tests": 64,
+  "frontend_tests": 6,
+  "browser_workflows": 2,
+  "benchmark_assertions": 10,
+  "backend_lint": "passed",
+  "frontend_lint": "passed",
+  "frontend_typecheck": "passed",
+  "frontend_build": "passed",
+  "frontend_format": "passed",
+  "pip_audit_runtime": "no known vulnerabilities",
+  "pnpm_audit": "no known vulnerabilities",
+  "docker_compose_execution": "not run; Docker runtime unavailable",
+  "github_ci_remote": "not run; local-only delivery",
+  "live_llm": "not run; AI disabled by default",
+  "mermaid": "static validation passed; no renderer claim"
+}
